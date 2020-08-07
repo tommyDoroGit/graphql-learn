@@ -3,9 +3,15 @@
 const express = require('express');
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
+const mongoose = require('mongoose');
 
 // create the Express Server instance for our app
 const app = express();
+
+mongoose.connect('mongodb+srv://tom:test123@qgl-ninja.yffq5.mongodb.net/qgl-ninja?retryWrites=true&w=majority');
+mongoose.connection.once('open', () => {
+    console.log('Connected to Database');
+})
 
 // this is setting up the graphql endpoint on Express. This will fire everytime a request to Graphql is made.
 app.use('/graphql', graphqlHTTP({
