@@ -37,6 +37,7 @@ Full Example -
   }
 }
 
-Up to episode 13
+### Connection to Mongo DB via Mongoose
+use mongoose.connect('daatabasepath')
 
 

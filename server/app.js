@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 // create the Express Server instance for our app
 const app = express();
 
+//Connection to Database
 mongoose.connect('mongodb+srv://tom:test123@qgl-ninja.yffq5.mongodb.net/qgl-ninja?retryWrites=true&w=majority');
 mongoose.connection.once('open', () => {
     console.log('Connected to Database');
@@ -17,7 +18,7 @@ mongoose.connection.once('open', () => {
 app.use('/graphql', graphqlHTTP({
     //pass in schema for the middleware
     
-    //schema: schema both are the same so we can use
+    //schema: schema both are the same so we can use. This defines the graph
     schema,
     //set Graphiql to true.
     graphiql: true
