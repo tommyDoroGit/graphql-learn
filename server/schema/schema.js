@@ -24,9 +24,9 @@ const { GraphQLObjectType,
 const BookType = new GraphQLObjectType({
   name: "Book",
   fields: () => ({
-    id: { type: GraphQLID },
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
+    id: { type: GraphQLID },
     author: {
       type: AuthorType,
       resolve(parent, args) {
@@ -62,6 +62,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         // code to get data from db / other source
         //return _.find(books, { id: args.id });
+        //return Author.findById()
       },
     },
     author: {
@@ -111,12 +112,14 @@ const Mutation = new GraphQLObjectType({
       args: {
         name: {type: GraphQLString},
         genre: {type: GraphQLString},
+        authorId: {type: GraphQLID}
       },
 
       resolve(parent, args) {
         let book = new Book({
           name: args.name,
           genre: args.genre,
+          authorId: args.authorId 
         });
         return book.save();
       }
